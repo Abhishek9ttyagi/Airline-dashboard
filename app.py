@@ -1,17 +1,20 @@
 import os
 from flask import Flask, render_template, request, jsonify
+from dotenv import load_dotenv
 import requests
 import pandas as pd
 import re
 from datetime import date, timedelta
 import google.generativeai as genai
 
+# Load environment variables from .env file
+load_dotenv()
+
 # --- CONFIGURATION ---
-# IMPORTANT: Replace these placeholder values with your actual API keys.
-# For better security, use environment variables in a real project.
-AMADEUS_API_KEY = "ARZlqP6SKytrfljFY63YjXTi8W3AqEx1"
-AMADEUS_API_SECRET = "QUV1iu9F9XqbAweb"
-GEMINI_API_KEY = "AIzaSyAVC1_I9yroAnlW0i_XVhoUCB-4pyl2QSQ"
+# API keys are now loaded from the .env file for better security.
+AMADEUS_API_KEY = os.getenv("AMADEUS_API_KEY")
+AMADEUS_API_SECRET = os.getenv("AMADEUS_API_SECRET")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Define cities globally to be accessible by all routes
 CITIES = {'SYD': 'Sydney', 'MEL': 'Melbourne', 'BNE': 'Brisbane', 'PER': 'Perth', 'ADL': 'Adelaide', 'CBR': 'Canberra', 'HBA': 'Hobart'}
